@@ -1,7 +1,7 @@
 var express =require('express');
 var todoController=require('./controller/todo-controller');
 
-var Port = process.env.PORT || 3000;
+var port = Process.env.PORT || 3000;
 
 var app = express();
 
@@ -11,6 +11,6 @@ app.use(express.static('./public'));
 
 todoController(app);
 
-app.listen(Port);
+app.listen(port);
 console.log('you are listening to port 3000');
 
