@@ -1,7 +1,7 @@
 var express =require('express');
 var todoController=require('./controller/todo-controller');
 
-var Port = process.env.Port || 3000;
+var Port = process.env.PORT || 3000;
 
 var app = express();
 
