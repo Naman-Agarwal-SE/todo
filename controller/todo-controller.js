@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 //connect to database
 mongoose.connect('mongodb+srv://test:test@cluster0.26fqw.mongodb.net/todo?retryWrites=true&w=majority',{ useUnifiedTopology: true , useNewUrlParser: true }).then( () => {
-    console.log('Connected to database ')
+    // console.log('Connected to database ')
 });
 
 var todoschema = new mongoose.Schema({
@@ -30,10 +30,10 @@ module.exports=function(app){
         });
     });
     app.post('/todo', urlencodedParser,function(req,res){
-        console.log('hello');
+        // console.log('hello');
         datas(req.body).save(function(err){
             if(err) throw err;
-            console.log('item saved');
+            // console.log('item saved');
             datas.find({},function(err,data){
                 if(err)throw err;
                 res.render('todo',{todos: data});
@@ -41,13 +41,13 @@ module.exports=function(app){
         });
     });
     app.get('/todo:item',function(req,res){
-        console.log(req.params.item.replace(/:/g,''));
+        // console.log(req.params.item.replace(/:/g,''));
         datas.deleteOne({item:req.params.item.replace(/:/g,'')}).then(function(){ 
             datas.find({},function(err,data){
                 if(err)throw err;
                 res.render('todo',{todos: data});
             }); 
-            console.log('deleted');
+            // console.log('deleted');
         }).catch(function(error){ 
             console.log(error);  
         }); 
