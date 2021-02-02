@@ -56,6 +56,12 @@ module.exports=function(app){
         //     res.render('todo',{todos: data});
         // });
     });
+    app.get('/',function(req,res){
+        datas.find({},function(err,data){
+           if(err)throw err;
+           res.render('todo',{todos: data});
+        });
+    });
     app.get('**',function(req,res){
         datas.find({},function(err,data){
            if(err)throw err;
