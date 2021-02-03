@@ -31,7 +31,7 @@ module.exports=function(app){
     });
     app.post('/todo', urlencodedParser,function(req,res){
         // console.log('hello');
-        datas(req.body).save(function(err){
+        datas({item:req.body.item.trim()}).save(function(err){
             if(err) throw err;
             // console.log('item saved');
             datas.find({},function(err,data){
@@ -41,8 +41,8 @@ module.exports=function(app){
         });
     });
     app.get('/todo:item',function(req,res){
-        // console.log(req.params.item.replace(/:/g,''));
         datas.deleteOne({item:req.params.item.replace(/:/g,'')}).then(function(){ 
+            // console.log('executed')
             datas.find({},function(err,data){
                 if(err)throw err;
                 res.render('todo',{todos: data});
